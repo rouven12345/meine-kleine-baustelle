@@ -1,0 +1,4 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {initial,act,paint,restore} from '../src/state.js';
+test('Haus kann in Reihenfolge fertig gebaut werden',()=>{let s=initial();for(const t of ['bagger','laster','kran','kran'])s=act(s,t);assert.equal(s.step,4);assert.equal(paint(s,'blau').roof,'blau');assert.equal(act(s,'kran'),s);});
+test('Falsches Fahrzeug und verfrühte Farbe verändern nichts',()=>{const s=initial();assert.equal(act(s,'kran'),s);assert.equal(paint(s,'rot'),s);});
+test('Ungültige Spielstände werden verworfen',()=>{for(const raw of ['oops','null','{"version":1,"step":99,"roof":null}','{"version":1,"step":2,"roof":"rot"}'])assert.deepEqual(restore(raw),initial());assert.deepEqual(restore(JSON.stringify({version:1,step:4,roof:'gruen'})),{version:1,step:4,roof:'gruen'});});
