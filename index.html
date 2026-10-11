@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="de-CH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ein freundliches Baustellenspiel: Material einkaufen, abladen, Beton mischen und Fundamente giessen." />
+    <title>Meine kleine Baustelle</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="game-shell" aria-label="Meine kleine Baustelle">
+      <header class="topbar">
+        <div class="brand" aria-label="Meine kleine Baustelle">
+          <span class="brand-icon" aria-hidden="true">🏗️</span>
+          <div><h1>Meine kleine Baustelle</h1><p>Fundament-Werkstatt</p></div>
+        </div>
+        <div class="wallet" aria-label="Sternestand"><span aria-hidden="true">⭐</span><strong id="stars">1'000'000</strong><span>Sterne</span></div>
+      </header>
+
+      <section class="mission-card" aria-live="polite">
+        <div class="mission-icon" aria-hidden="true">🎯</div>
+        <div><p class="eyebrow">Deine Aufgabe</p><h2 id="mission-title">Ein Fundament bauen</h2><p id="mission-text">Kaufe ein Baumaterial im Laden.</p></div>
+        <div class="phase-pill" id="phase-pill">1 · Einkaufen</div>
+      </section>
+
+      <section class="site" aria-label="Baustelle">
+        <div class="sky-decor cloud cloud-one" aria-hidden="true">☁️</div><div class="sky-decor cloud cloud-two" aria-hidden="true">☁️</div>
+        <button class="building shop" id="open-shop" type="button" aria-haspopup="dialog">
+          <span class="building-emoji" aria-hidden="true">🏪</span><span class="building-label">Laden</span><span class="building-help" id="shop-help">Material kaufen</span>
+        </button>
+        <div class="road" aria-hidden="true"></div>
+        <button class="truck-card" id="truck-action" type="button">
+          <span class="truck" aria-hidden="true">🚚</span>
+          <span class="truck-copy"><strong id="truck-title">Warte auf Material</strong><span id="truck-detail">Im Laden einkaufen</span></span>
+          <span class="tap-counter" id="unload-counter">0/3</span>
+        </button>
+
+        <section class="work-area" aria-label="Betonplatz">
+          <div class="work-heading"><p class="eyebrow">Baustelle</p><h2>Fundamentplatz</h2></div>
+          <div class="materials-row" id="materials-row" aria-label="Abgeladene Materialien"></div>
+          <div class="mixer-zone">
+            <div class="mixer-wrap" id="mixer-visual" aria-hidden="true"><div class="mixer-drum"><span>BETON</span></div><div class="mixer-leg left"></div><div class="mixer-leg right"></div></div>
+            <div class="mixer-copy"><p class="eyebrow">Betonmischer</p><p id="mixer-status">Noch kein Material im Mischer.</p><div class="ingredient-list" id="ingredient-list" aria-label="Material im Betonmischer"></div><button class="primary-action" id="mix-action" type="button" disabled>Beton mischen · <span id="mix-counter">0/10</span></button></div>
+          </div>
+          <div class="foundation-zone" id="foundation-zone">
+            <div class="foundation-slab" aria-hidden="true"><span class="foundation-lines"></span></div>
+            <div><p class="eyebrow">Fundament</p><p id="foundation-status">Noch leer – bereit für Beton.</p><button class="pour-action" id="pour-action" type="button" disabled>Fundament giessen</button></div>
+          </div>
+        </section>
+      </section>
+      <section class="tip-card" aria-live="polite"><span aria-hidden="true">💡</span><p id="game-message">Jedes Material reicht aus. Ein Rezept brauchst du nicht.</p></section>
+
+      <dialog class="shop-dialog" id="shop-dialog" aria-labelledby="shop-title">
+        <div class="shop-dialog-head"><div><p class="eyebrow">Willkommen im</p><h2 id="shop-title">Baumaterial-Laden</h2></div><button class="close-dialog" id="close-shop" type="button" aria-label="Laden schliessen">×</button></div>
+        <p class="shop-intro">Du darfst alles einzeln kaufen. Schon ein Material genügt für ein Fundament.</p>
+        <div class="shop-grid" id="shop-grid"></div>
+        <div class="shop-footer"><span id="shop-order-summary">Noch nichts für den LKW gekauft.</span><button class="secondary-action" id="shop-done" type="button">Zum LKW</button></div>
+      </dialog>
+    </main>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
